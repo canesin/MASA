@@ -15,7 +15,11 @@ noinst_PROGRAMS  = MASAshell display_solutions euler_example navierstokes burger
 noinst_PROGRAMS += rans_sa fans_sa fans_sa_finite_d fans_sa_wall radiation euler_chem 
 noinst_PROGRAMS += euler_transient heat_example switch ablation_example
 noinst_PROGRAMS += c_heat_example c_euler_example c_laplace_example sod
-noinst_PROGRAMS += f_cns f_euler f_laplace f_insh
+
+if FORT_ENABLED
+noinst_PROGRAMS += f_cns f_cns_4d f_euler f_laplace f_insh
+endif
+
 noinst_PROGRAMS += cp_gaussian
 noinst_PROGRAMS += laplace_example
 
@@ -63,6 +67,7 @@ example_DATA             += c_heat_example.c c_euler_example.c
 # ----------------- 
 #    Pf'ortran
 # ----------------- 
+if FORT_ENABLED
 
 f_laplace_SOURCES         = f_laplace.f90
 f_laplace_LDADD           = -lfmasa
@@ -76,12 +81,17 @@ f_cns_SOURCES             = f_cns.f90
 f_cns_LDADD               = -lfmasa
 f_cns_LIBTOOLFLAGS        = --tag=FC
 
+f_cns_4d_SOURCES          = f_cns_4d.f90
+f_cns_4d_LDADD            = -lfmasa
+f_cns_4d_LIBTOOLFLAGS     = --tag=FC
+
 f_insh_SOURCES             = f_insh.f90
 f_insh_LDADD               = -lfmasa
 f_insh_LIBTOOLFLAGS        = --tag=FC
 
 example_DATA             += f_euler.f90
 
+endif
 
 #----------------------
 # Regression Tests
@@ -109,13 +119,18 @@ TESTS                      = init.sh              \
 			     c_init.sh            \
                              c_euler_example      \
                              c_laplace_example    \
-                             c_heat_example       \
-			     f_init.sh            \
+                             c_heat_example
+
+if FORT_ENABLED
+TESTS                     += f_init.sh            \
                              f_laplace            \
                              f_euler              \
                              f_cns                \
-                             f_insh               \
-                             finalize.sh
+                             f_cns_4d             \
+                             f_insh 
+endif
+
+TESTS                     += finalize.sh
 
 EXTRA_DIST                 = init.sh              \
 			     c_init.sh            \

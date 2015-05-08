@@ -1,0 +1,8 @@
+*.m linguist-vendored
+*.dat linguist-vendored
+*.tab linguist-vendored
+*.txt linguist-vendored
+*.C linguist-language=C++
+*.h linguist-language=C++
+*.cpp linguist-language=C++
+*.f90 linguist-language=Fortran

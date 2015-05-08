@@ -15,11 +15,11 @@ MASA currently supports later versions of the GNU, Intel, and PGI
 family of compilers.
 
 Regression tests are routinely performed against the following
-compiler versions:
+compilers:
 
-PGI 11.5
-GNU 4.5
-Intel 11.1
+PGI
+GNU
+Intel
 
 ------------------
 TO BUILD:
@@ -34,4 +34,8 @@ It is recommended that new users run 'make check' This runs numerous diagnostic
 tests, which ensure the precision of all associated solutions are at minimum,
 1e-15.
 
+------------------
+More information:
+------------------
 
+Please consult the online documentation at http://manufactured-solutions.github.io/MASA/ or the README.md
